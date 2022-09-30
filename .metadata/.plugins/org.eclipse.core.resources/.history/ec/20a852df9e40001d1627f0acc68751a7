@@ -1,0 +1,7 @@
+package kr.or.member.controller;
+
+import kr.or.member.model.service.MemberService;
+
+public class MemberController {
+	private MemberService service;
+}

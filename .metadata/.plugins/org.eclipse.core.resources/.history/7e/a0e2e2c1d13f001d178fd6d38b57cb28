@@ -1,0 +1,10 @@
+package kr.or.iei.controller;
+
+public class SearchController implements Controller{
+
+	public String SearchController() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+}

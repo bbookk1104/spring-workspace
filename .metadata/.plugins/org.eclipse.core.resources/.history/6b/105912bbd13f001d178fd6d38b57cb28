@@ -1,0 +1,19 @@
+package kr.or.iei.controller;
+
+public class SearchController implements Controller{
+
+	
+	
+	
+	
+	
+	
+	
+	
+	@Override
+	public SearchController() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+}
