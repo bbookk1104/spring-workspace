@@ -8,6 +8,7 @@
 </head>
 <body>
 	<h1>조회결과</h1>
+	<hr>
 	<ul>
 		<li>회원번호 : ${m.memberNo }</li>
 		<li>아이디 : ${m.memberId }</li>
@@ -16,5 +17,7 @@
 		<li>전화번호 : ${m.phone }</li>
 		<li>이메일 : ${m.email }</li>
 	</ul>
+	<hr>
+	<a href="/">메인페이지로 이동</a>
 </body>
 </html>

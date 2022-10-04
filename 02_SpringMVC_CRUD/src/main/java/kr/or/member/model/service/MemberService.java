@@ -14,7 +14,7 @@ public class MemberService {
 	private MemberDao dao;
 	public MemberService() {
 		super();
-		System.out.println("서비스 생성");
+		System.out.println("MemberService생성");
 	}
 	public int insertMember(Member m) {
 		int result = dao.insertMember(m);

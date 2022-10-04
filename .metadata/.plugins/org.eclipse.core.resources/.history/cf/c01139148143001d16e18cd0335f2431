@@ -1,0 +1,12 @@
+package kr.or.board.model.service;
+
+import kr.or.board.model.dao.BoardDao;
+
+public class BoardService {
+	private BoardDao dao;
+
+	public BoardService() {
+		super();
+		System.out.println("BoardService생성");
+	}
+}

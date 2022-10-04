@@ -21,6 +21,7 @@
 				</fieldset>
 			</form>
 			<h3><a href="/joinFrm.do">1. 회원가입</a></h3>
+			<h3><a href="/boardList.do">2. 게시판</a></h3>
 		</c:when>
 		<c:otherwise>
 			<h2>[${sessionScope.m.memberName }]님 환영합니다.</h2>
@@ -32,6 +33,8 @@
 			<h3><a href="/searchAllMember.do">전체회원조회</a></h3>
 			<h3><a href="/mypage.do">마이페이지</a></h3>
 			<h3><a href="/deleteMember.do?memberNo=${sessionScope.m.memberNo }">회원탈퇴</a></h3>
+			<hr>
+			<h3><a href="/boardList.do">게시판조회</a></h3>
 		</c:otherwise>
 	</c:choose>
 </body>

@@ -1,0 +1,12 @@
+package kr.or.board.model.dao;
+
+import org.springframework.jdbc.core.JdbcTemplate;
+
+public class BoardDao {
+	private JdbcTemplate jdbcTemplate;
+
+	public BoardDao() {
+		super();
+		System.out.println("BoardDao생성완료");
+	}
+}

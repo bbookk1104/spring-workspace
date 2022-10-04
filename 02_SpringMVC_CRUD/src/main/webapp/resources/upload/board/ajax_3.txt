@@ -1,0 +1,39 @@
+1. jsp+ajax코드
+<script>
+//카트담기 누르면 해당제품 Cart_TBL에 추가
+$("카트담기").on("click", function() {
+	let productNo = $("제품번호").val(); //product_no역할
+	let productCount = $("제품수량").val(); //order_qty역할
+	//cart_no는 cart_sequence.nextval로 추가, member_id는 세션 값 불러와서 추가
+	$.ajax({
+		url : "/cartInsert.do",
+		type : "get",
+		data : {
+			productNo : productNo
+			productCount : productCount
+		},
+		success : function(data) {
+			if (data) {
+				console.log("카트추가 성공");
+			} else {
+				console.log("카트추가 실패");
+			}
+		}
+	});
+});
+</script>
+
+2. servlet코드
+protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	// 인코딩
+	request.setCharacterEncoding("utf-8");
+	// 값추출
+	int cartNo = Integer.parseInt(request.getParameter("selectedNo"));
+	// 비즈니스로직
+	CartService service = new CartService();
+	boolean result = service.deleteCartOne(cartNo);
+	// 결과처리
+	response.setCharacterEncoding("utf-8");
+	PrintWriter out = response.getWriter();
+	out.print(result);
+}

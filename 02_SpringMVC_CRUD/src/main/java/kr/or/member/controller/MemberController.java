@@ -22,7 +22,7 @@ public class MemberController {
 	
 	public MemberController() {
 		super();
-		System.out.println("컨트롤러 생성");
+		System.out.println("MemberController생성");
 	}
 	
 	@RequestMapping(value="/joinFrm.do")

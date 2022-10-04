@@ -16,7 +16,7 @@ public class MemberDao {
 	private JdbcTemplate jdbcTemplate;
 	public MemberDao() {
 		super();
-		System.out.println("DAO 생성완료");
+		System.out.println("MemberDao 생성완료");
 	}
 	public int insertMember(Member m) {
 		//1. PrepareStatement방식으로 쿼리문 작성

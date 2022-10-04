@@ -1,0 +1,31 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>게시글상세조회</h1>
+	<hr>
+	<table style="width: 600px">
+		<tr>
+			<th style="width: 20%">제목</th>
+			<td colspan="3" style="width: 80%">${b.boardTitle }</td>
+		</tr>
+		<hr>
+		<tr>
+			<th style="width: 15%">작성자</th>
+			<td style="width: 35%">${b.boardWriter }</td>
+			<th style="width: 15%">작성일</th>
+			<td style="width: 35%">${b.boardDate }</td>
+		</tr>
+		<tr>
+			<td colspan="4">${b.boardContent }</td>
+		</tr>
+	</table>
+	<hr>
+	<a href="/">메인페이지로 이동</a>
+</body>
+</html>

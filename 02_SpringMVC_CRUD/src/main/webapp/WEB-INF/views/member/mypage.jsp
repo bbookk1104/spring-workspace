@@ -19,7 +19,7 @@
 			전화번호 : <input type="text" name="phone" value="${sessionScope.m.phone }"><br>
 			이메일 : <input type="text" name="email" value="${sessionScope.m.email }"><br>
 			<input type="submit" value="정보수정"><br>
-			<a href="/">메인으로 돌아가기</a>
+			<a href="/">메인페이지로 이동</a>
 		</fieldset>
 	</form>
 </body>

@@ -8,5 +8,6 @@
 </head>
 <body>
 	<h1>회원가입 실패</h1>
+	<a href="/">메인페이지로 이동</a>
 </body>
 </html>
