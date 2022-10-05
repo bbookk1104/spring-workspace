@@ -1,13 +1,17 @@
 package kr.or.board.controller;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +19,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+import common.FileRename;
 import kr.or.board.model.service.BoardService;
 import kr.or.board.model.vo.Board;
 import kr.or.board.model.vo.BoardViewData;
@@ -24,6 +29,8 @@ import kr.or.board.model.vo.FileVO;
 public class BoardController {
 	@Autowired
 	private BoardService service;
+	@Autowired
+	private FileRename fileRename;
 
 	public BoardController() {
 		super();
@@ -80,6 +87,9 @@ public class BoardController {
 				//사용자가 업로드한 파일 이름 추출
 				String filename = file.getOriginalFilename();
 				//filename = test.txt라는 값을 추출
+				String filepath = fileRename.fileRename(savePath, filename);
+				
+				/*
 				String onlyFilename = filename.substring(0,filename.lastIndexOf("."));
 				//test추출 (0번인덱스부터 .앞까지 자름)
 				String extention = filename.substring(filename.lastIndexOf("."));
@@ -103,6 +113,8 @@ public class BoardController {
 					}
 					count++;
 				}
+				*/
+				
 				//파일명 중복체크 끝 -> 파일업로드 진행
 				
 				//중복처리가 끝난 파일명으로 파일업로드 진행
@@ -136,15 +148,110 @@ public class BoardController {
 	
 	@RequestMapping(value="boardView.do")
 	public String boardView(Model model, int boardNo) {
-		BoardViewData bvd = service.selectOneBoard(boardNo);
-		model.addAttribute("bvd",bvd);
+		Board b = service.selectOneBoard(boardNo);
+		model.addAttribute("b",b);
 		return "board/boardView";
 	}
 	
+	@RequestMapping(value="boardFileDown.do")
+	public void boardFileDown(int fileNo, HttpServletRequest request, HttpServletResponse response) {
+		//fileNo : DB에서 filename, filepath를 조회하기위한 값
+		//request : 파일이 위치하는 경로를 찾기위해서 필요
+		//reponse : 사용자에게 파일을 보내주기위해 필요
+		FileVO f = service.selectOneFile(fileNo);
+		String savePath = request.getSession().getServletContext().getRealPath("/resources/upload/board/");
+		String downFile = savePath+f.getFilepath();
+		try {
+			//스트림 생성
+			FileInputStream fis = new FileInputStream(downFile);
+			BufferedInputStream bis = new BufferedInputStream(fis);
+			ServletOutputStream sos = response.getOutputStream();
+			BufferedOutputStream bos = new BufferedOutputStream(sos);
+			//파일이름 인코딩
+			String downFilename = new String(f.getFilename().getBytes("UTF-8"),"ISO-8859-1");
+			//파일 다운로드를 위한 HTTP헤더 설정
+			response.setContentType("application/octet-stream");
+			response.setHeader("Content-Disposition", "attachment;filename="+downFilename);
+			//파일 읽기
+			while(true) {
+				int read = bis.read();
+				if(read != -1) {
+					bos.write(read);
+				}else {
+					break;
+				}
+			}
+			bos.close();
+			bis.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	@RequestMapping(value="updateBoardFrm.do")
-	public String updateBoard(Model model, Board b) {
+	public String updateBoardFrm(Model model, int boardNo) {
+		Board b = service.selectOneBoard(boardNo);
 		model.addAttribute("b",b);
 		return "board/updateBoardFrm";
 	}
 	
+	@RequestMapping(value="updateBoard.do")
+	public String updateBoard(int[] fileNoList, String[] filepathList, Board b, MultipartFile[] boardFile, HttpServletRequest request) {
+		ArrayList<FileVO> fileList = new ArrayList<FileVO>();
+		String savepath = request.getSession().getServletContext().getRealPath("/resources/upload/board/");
+		if(!boardFile[0].isEmpty()) {
+			for(MultipartFile file : boardFile) {
+				String filename = file.getOriginalFilename();
+				String filepath = fileRename.fileRename(savepath,filename);
+				File upFile = new File(savepath+filepath);
+				try {
+					FileOutputStream fos = new FileOutputStream(upFile);
+					BufferedOutputStream bos = new BufferedOutputStream(fos);
+					byte[] bytes = file.getBytes();
+					bos.write(bytes);
+					bos.close();
+					FileVO f = new FileVO();
+					f.setFilename(filename);
+					f.setFilepath(filepath);
+					fileList.add(f);
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		b.setFileList(fileList);
+		int result = service.updateBoard(b, fileNoList);
+		if(fileNoList != null && result == (fileList.size()+fileNoList.length+1)) {
+			if(filepathList != null) {
+				for(String filepath : filepathList) {
+					File delFile = new File(savepath+filepath);
+					delFile.delete();
+				}
+			}
+		}
+		return "redirect:/boardView.do?boardNo="+b.getBoardNo();
+	}
+	
+	@RequestMapping(value="deleteBoard.do")
+	public String deleteBoard(int boardNo, HttpServletRequest request) {
+		//board테이블 삭제
+		ArrayList<FileVO> list = service.deleteBoard(boardNo);
+		//실제파일 삭제
+		if(list != null) {
+			String path = request.getSession().getServletContext().getRealPath("/resources/upload/board/");
+			for(FileVO file : list) {
+				File delFile = new File(path+file.getFilepath());
+				delFile.delete();
+			}
+		}
+		return "redirect:/boardList.do";
+	}
 }

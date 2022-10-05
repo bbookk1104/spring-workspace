@@ -84,19 +84,23 @@
 				</li>
 				<li>
 					<label for="pw">비밀번호<span class="require">*</span></label>
-					<input type="password" name="memberPw" id="pw" placeholder="c0r0sskill" autocomplete="off" required>
+					<input type="password" name="memberPw" id="pw" placeholder="c0r0nakill" autocomplete="off" required>
 				</li>
 				<li>
 					<label for="name">이름<span class="require">*</span></label>
-					<input type="text" name="memberName" id="name" placeholder="코로쓰" autocomplete="off" required>
+					<input type="text" name="memberName" id="name" placeholder="김덕팔" autocomplete="off" required>
+				</li>
+				<li>
+					<label for="nickname">닉네임</label>
+					<input type="text" name="nickname" id="nickname" placeholder="zㅣ존킹왕짱v" autocomplete="off" required>
 				</li>
 				<li>
 					<label for="phone">전화번호</label>
-					<input type="text" name="phone" id="phone" placeholder="010-XXXX-XXXX" autocomplete="off">
+					<input type="text" name="memberPhone" id="phone" placeholder="010-XXXX-XXXX" autocomplete="off">
 				</li>
 				<li>
-					<label for="email">이메일</label>
-					<input type="text" name="email" id="email" placeholder="corona@coross.com" autocomplete="off">
+					<label for="addr">주소</label>
+					<input type="text" name="memberAddr" id="addr" placeholder="경기도 군포시 산본동" autocomplete="off">
 				</li>
 				<li style="text-align: center;"><input type="submit" value="가입하기"></li>
 			</ul>

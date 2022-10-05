@@ -20,5 +20,10 @@ public class MemberService {
 		int result = dao.insertMember(m);
 		return result;
 	}
+
+	public Member loginCheck(Member m) {
+		Member loginMember = dao.loginCheck(m);
+		return loginMember;
+	}
 	
 }

@@ -30,11 +30,11 @@ public class BoardService {
 		return result;
 	}
 
-	public BoardViewData selectOneBoard(int boardNo) {
+	public Board selectOneBoard(int boardNo) {
 		Board b = dao.selectOneBoard(boardNo);
 		ArrayList<FileVO> fileList = dao.selectAllFile(boardNo);
-		BoardViewData bvd = new BoardViewData(b,fileList);
-		return bvd;
+		b.setFileList(fileList);
+		return b;
 	}
 
 	public int insertBoard2(Board b, ArrayList<FileVO> list) {
@@ -54,5 +54,40 @@ public class BoardService {
 			}
 		}
 		return result;
+	}
+
+	public FileVO selectOneFile(int fileNo) {
+		FileVO f = dao.selectOneFile(fileNo);
+		return f;
+	}
+
+	public int updateBoard(Board b, int[] fileNoList) {
+		//1. board테이블 수정(제목,내용) - 필수
+		int result = dao.updateBoard(b);
+		if(result>0) {
+			//2. 새 첨부파일이 있으면 insert - 선택
+			for(FileVO fv : b.getFileList()) {
+				fv.setBoardNo(b.getBoardNo());
+				result += dao.insertFile(fv);
+			}
+			//3. 삭제한 파일이 있으면 delete - 선택
+			if(fileNoList != null) {
+				for(int fileNo : fileNoList) {
+					result += dao.deleteFile(fileNo);
+				}
+			}
+		}
+		return result;
+	}
+
+	public ArrayList<FileVO> deleteBoard(int boardNo) {
+		ArrayList<FileVO> fileList = dao.selectAllFile(boardNo);
+		//board테이블 삭제
+		int result = dao.deleteBoard(boardNo);
+		if(result>0) {
+			return fileList;
+		}else {
+			return null;
+		}
 	}
 }

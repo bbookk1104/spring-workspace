@@ -3,5 +3,6 @@
 <aop-project name="01_SpringMVC"/>
 <aop-project name="02_SpringMVC_CRUD"/>
 <aop-project name="practice_CRUD"/>
+<aop-project name="practice_221005"/>
 <aop-project name="firstProject"/>
 </aop-reference-model>
