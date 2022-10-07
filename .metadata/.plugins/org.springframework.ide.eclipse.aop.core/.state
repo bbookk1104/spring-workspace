@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <aop-reference-model>
+<aop-project name="exam_project"/>
 <aop-project name="01_SpringMVC"/>
 <aop-project name="02_SpringMVC_CRUD"/>
 <aop-project name="practice_CRUD"/>
-<aop-project name="practice_221005"/>
+<aop-project name="03_Spring_Mybatis"/>
 <aop-project name="firstProject"/>
 </aop-reference-model>
