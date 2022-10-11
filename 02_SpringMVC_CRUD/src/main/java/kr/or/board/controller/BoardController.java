@@ -89,7 +89,7 @@ public class BoardController {
 				//filename = test.txt라는 값을 추출
 				String filepath = fileRename.fileRename(savePath, filename);
 				
-				/*
+				/* common - FileRename으로 분리
 				String onlyFilename = filename.substring(0,filename.lastIndexOf("."));
 				//test추출 (0번인덱스부터 .앞까지 자름)
 				String extention = filename.substring(filename.lastIndexOf("."));

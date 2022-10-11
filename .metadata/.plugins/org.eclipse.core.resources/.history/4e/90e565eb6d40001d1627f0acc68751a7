@@ -1,7 +1,0 @@
-package kr.or.member.model.vo;
-
-import org.springframework.jdbc.core.RowMapper;
-
-public class MemberRowMapper implements RowMapper{
-
-}

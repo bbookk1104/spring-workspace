@@ -1,6 +1,0 @@
-package kr.or.board.model.vo;
-
-public class BoardViewData {
-	private Board b;
-	private FileVO fileVO;
-}

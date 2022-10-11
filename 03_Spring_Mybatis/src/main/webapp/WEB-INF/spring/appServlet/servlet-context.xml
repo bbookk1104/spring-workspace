@@ -42,8 +42,14 @@
 		<beans:constructor-arg ref="sqlSession"/>
 	</beans:bean>
 	
+	<!-- 파일업로드용 객체 생성 -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="10485760"/><!-- = 10메가 -->
+	</beans:bean>
+	
 	<context:component-scan base-package="kr.or.iei" />
 	<context:component-scan base-package="kr.or.member"/>
 	<context:component-scan base-package="kr.or.board"/>
+	<context:component-scan base-package="common"/>
 	
 </beans:beans>

@@ -8,7 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
+
+import com.google.gson.Gson;
 
 import kr.or.member.model.service.MemberService;
 import kr.or.member.model.vo.Member;
@@ -139,5 +142,32 @@ public class MemberController {
 		ArrayList<Member> list = service.searchMember4();
 		model.addAttribute("list",list);
 		return "member/memberList";
+	}
+	
+	@ResponseBody//페이지이동 안하고 data넘겨주기만 하는 경우
+	@RequestMapping(value="/idCheck.do")
+	public String idCheck(Member m) {
+		//String memberId로 받기도 가능
+		Member member = service.selectOneMember(m);
+		if(member == null) {
+			//사용가능한 아이디
+			return "0";
+		}else {
+			//이미 사용중인 아이디
+			return "1";
+		}
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/ajaxAllMember.do",produces="application/json;charset=utf-8")
+	//produces로 한글 인코딩
+	public String ajaxAllMember() {
+		ArrayList<Member> list = service.selectAllMember();
+		//자바와 자바스크립트 사이에서 데이터 주고받을수있는 형식 - json, gson
+		//json은 문자열데이터 (ex: {"key1":"value1","key2":"value2","key3":"value3"},{"key4":"value4"})
+		Gson gson = new Gson();
+		String result = gson.toJson(list);
+		System.out.println(result);
+		return result;
 	}
 }
