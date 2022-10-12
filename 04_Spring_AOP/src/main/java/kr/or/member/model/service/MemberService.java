@@ -5,11 +5,13 @@ import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.common.LogAdvice1;
 import kr.or.common.LogAdvice2;
 import kr.or.member.model.dao.MemberDao;
 import kr.or.member.model.vo.Member;
+import kr.or.member.model.vo.Visitor;
 
 @Service
 public class MemberService {
@@ -29,11 +31,13 @@ public class MemberService {
 		System.out.println("selectAllMember메소드 끝");
 		return list;
 	}
-
+	
+	@Transactional
 	public int insertMember(Member m) {
 		return dao.insertMember(m);
 	}
-
+	
+	@Transactional
 	public Member updateMember(Member m) {
 		int result = dao.updateMember(m);
 		if (result > 0) {
@@ -43,7 +47,8 @@ public class MemberService {
 			return null;
 		}
 	}
-
+	
+	@Transactional
 	public int deleteMember(int memberNo) {
 		return dao.deleteMember(memberNo);
 	}
@@ -78,5 +83,21 @@ public class MemberService {
 
 	public ArrayList<Member> searchMember4() {
 		return dao.searchMember4();
+	}
+
+	public int updatePwMember(Member m) {
+		return dao.updatePw(m);
+	}
+
+	public ArrayList<Visitor> selectVisitor() {
+		return dao.selectVisitor();
+	}
+
+	public int insertVisitor(String ip) {
+		return dao.insertVisitor(ip);
+	}
+
+	public Member searchPw(Member m) {
+		return dao.searchPw(m);
 	}
 }

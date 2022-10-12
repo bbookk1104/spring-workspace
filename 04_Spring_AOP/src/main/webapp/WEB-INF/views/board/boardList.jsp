@@ -13,32 +13,31 @@
 	<c:if test="${not empty sessionScope.m }">
 		<a href="/boardWriteFrm.do">게시글 작성</a>
 	</c:if>
-	<div>
-		<table border="1">
-			<thead>
-				<tr>
-					<th style="width: 10%;">번호</th>
-					<th style="width: 55%;">제목</th>
-					<th style="width: 10%;">작성자</th>
-					<th style="width: 15%;">등록일</th>
-				</tr>
-			</thead>
-			<tbody>
+	<table border="1">
+		<thead>
+			<tr>
+				<th style="width: 10%;">번호</th>
+				<th style="width: 55%;">제목</th>
+				<th style="width: 10%;">작성자</th>
+				<th style="width: 15%;">등록일</th>
+			</tr>
+		</thead>
+		<tbody>
 			<c:forEach items="${ bList}" var="b" varStatus="i">
-					<tr>
-						<th>${(reqPage-1)*numPerPage+i.count }</th>
-						<td><a href="/boardView.do?boardNo=${b.boardNo }">${b.boardTitle }</a></td>
-						<td>${b.boardWriter }</td>
-						<td>${b.boardDate }</td>
-					</tr>
-			</c:forEach>
-			</tbody>
-			<tfoot>
 				<tr>
-					<th colspan="4">${pageNavi }</th>
+					<th>${(reqPage-1)*numPerPage+i.count }</th>
+					<td><a href="/boardView.do?boardNo=${b.boardNo }">${b.boardTitle }</a></td>
+					<td>${b.boardWriter }</td>
+					<td>${b.boardDate }</td>
 				</tr>
-			</tfoot>
-		</table>
-	</div>
+			</c:forEach>
+		</tbody>
+		<tfoot>
+			<tr>
+				<th colspan="4">${pageNavi }</th>
+			</tr>
+		</tfoot>
+	</table>
+	<h3><a href="/">메인페이지</a></h3>
 </body>
 </html>

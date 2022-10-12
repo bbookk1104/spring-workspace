@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.or.member.model.vo.Member;
+import kr.or.member.model.vo.Visitor;
 
 @Repository
 public class MemberDao {
@@ -76,6 +77,23 @@ public class MemberDao {
 	public ArrayList<Member> searchMember4() {
 		List list = sqlSession.selectList("member.searchMember4");
 		return (ArrayList<Member>) list;
+	}
+
+	public int updatePw(Member m) {
+		return sqlSession.update("member.updatePw",m);
+	}
+
+	public ArrayList<Visitor> selectVisitor() {
+		List list = sqlSession.selectList("visitor.selectVisitor");
+		return (ArrayList<Visitor>) list;
+	}
+
+	public int insertVisitor(String ip) {
+		return sqlSession.insert("visitor.insertVisitor",ip);
+	}
+
+	public Member searchPw(Member m) {
+		return sqlSession.selectOne("member.searchPw",m);
 	}
 	
 }

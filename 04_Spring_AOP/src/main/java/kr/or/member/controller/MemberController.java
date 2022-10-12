@@ -18,6 +18,7 @@ import com.google.gson.Gson;
 
 import kr.or.member.model.service.MemberService;
 import kr.or.member.model.vo.Member;
+import kr.or.member.model.vo.Visitor;
 
 @Controller
 public class MemberController {
@@ -34,7 +35,7 @@ public class MemberController {
 		Member m = service.selectOneMember(member);
 		if(m!=null) {
 			if(!ip.equals("192.168.10.38")) {
-				if(m.getMemberId().equals("user01") || m.getMemberId().equals("user02") || m.getMemberId().equals("user03")){
+				if(m.getMemberId().equals("user00") || m.getMemberId().equals("user01") || m.getMemberId().equals("user02") || m.getMemberId().equals("user03")){
 					return "member/nope";
 				}
 			}
@@ -185,12 +186,66 @@ public class MemberController {
 	
 	@ResponseBody
 	@RequestMapping(value="/getIp.do")
-	public String getIp() {
+	public String getIp(HttpSession session) {
 		// ip주소 추적!
 		String ip = null;
 		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
 		ip = request.getRemoteAddr();
+		//String checkIp = service.checkVisitorIp(ip);
+		//if(ip!="192.168.10.38") {
+			int result = service.insertVisitor(ip);
+		//}
 		System.out.println("접속IP : " + ip);
 		return ip;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/pwCheck.do")
+	public String pwCheck(Member m) {
+		Member member = service.selectOneMember(m);
+		if(member == null) {
+			return "0";
+		}else {
+			return "1";
+		}
+	}
+	
+	@RequestMapping(value="/updatePwFrm.do")
+	public String updatePwFrm() {
+		return "member/updatePwFrm";
+	}
+	
+	@RequestMapping(value="/updatePw.do")
+	public String updatePw(Member m) {
+		int result = service.updatePwMember(m);
+		if(result>0) {
+			//변경 성공 시 session에 변경된 데이터를 반영해야하지만, 비밀번호는 세션에 적용할 필요가 딱히 없다.
+			return "redirect:/logout.do";
+		}else {
+			return "redirect:/mypage.do";
+		}
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/getVisitorList.do")
+	public ArrayList<Visitor> getVisitorList() {
+		ArrayList<Visitor> list = service.selectVisitor();
+		return list;
+	}
+	
+	@RequestMapping(value="/searchIdPw.do")
+	public String searchInfo() {
+		return "member/searchIdPw";
+	}
+	
+	@RequestMapping(value="/searchPw.do")
+	public String searchPw(Member m) {
+		Member member = service.selectOneMember(m);
+		if(member != null) {
+			//아이디,이메일이 정확한 경우
+			return "member/sendMail";
+		}else {
+			return "redirect:/";
+		}
 	}
 }

@@ -21,10 +21,11 @@
 				</fieldset>
 			</form>
 			<h3><a href="/joinFrm.do">회원가입</a></h3>
+			<h3><a href="/searchIdPw.do">아이디/비밀번호찾기</a></h3>
 			<hr>
 			<form action="/searchMemberId.do">
-				아이디 : <input type="text" name="memberId">
-				<input type="submit" value="회원 조회">
+				아이디 : <input type="text" name="memberId" placeholder="아이디 검색">
+				<input type="submit" value="회원조회">
 			</form>
 		</c:when>
 		<c:otherwise>
@@ -37,9 +38,14 @@
 			<h3><a href="/mypage.do">마이페이지</a></h3>
 			<h3><a onclick="deleteConfirm();">회원탈퇴</a></h3>
 			<hr>
+			<form action="/searchMemberId.do">
+				아이디 : <input type="text" name="memberId" placeholder="아이디 검색">
+				<input type="submit" value="회원조회">
+			</form>
+			<hr>
 			<form action="/searchMemberName.do">
-				이름 : <input type="text" name="memberName">
-				<input type="submit" value="회원 조회">
+				이름 : <input type="text" name="memberName" placeholder="이름 검색">
+				<input type="submit" value="회원조회">
 			</form>
 			<hr>
 			<form action="/searchMember1.do" method="post">
@@ -47,28 +53,29 @@
 					<option value="id">아이디</option>
 					<option value="name">이름</option>
 				</select>
-				<input type="text" name="keyword">
-				<input type="submit" value="검색">
+				<input type="text" name="keyword" placeholder="검색옵션 선택">
+				<input type="submit" value="회원조회">
 			</form>
 			<hr>
 			<h3>아이디 or 이름으로 검색</h3>
 			<p>아이디만 입력하고 검색하는 경우 아이디로 조회, 이름만 입력하고 검색하는 경우 이름으로 조회,
 			둘다 입력하고 검색하는 경우 두개 and로 조회</p>
 			<form action="/searchMember2.do" method="post">
-				아이디 : <input type="text" name="memberId"><br>
-				이름 : <input type="text" name="memberName"><br>
-				<input type="submit" value="검색">
+				<input type="text" name="memberId" placeholder="아이디 입력"><br>
+				<input type="text" name="memberName" placeholder="이름 입력"><br>
+				<input type="submit" value="회원조회" style="width:177px">
 			</form>
 			<hr>
 			<h3><a href="/idList.do">전체회원 아이디 목록</a></h3>
 			<hr>
-			<h3><a href="/searchMember4.do">회원조회4</a></h3>
+			<h3><a href="/searchMember4.do">회원번호 10 미만인 회원조회</a></h3>
 		</c:otherwise>
 	</c:choose>
 	<hr>
 	<button id="allMemberAjax">전체회원조회(AJAX)</button>
 	<div id="ajaxResult"></div>
-	
+	<hr>
+	<div id="visitorList"></div>
 </body>
 <script>
 	$("#allMemberAjax").on("click",function(){
@@ -99,7 +106,7 @@
 			location.href="/deleteMember.do";
 		}
 	}
-
+	
 	$(function getIp() {
 		$.ajax({
 			url : "/getIp.do",
@@ -112,9 +119,32 @@
 						alert("ㅎㅎ");
 					}
 				}
+				getVisitorList();
 			}
 		});
 	});
+	
+	function getVisitorList() {
+		$.ajax({
+			url : "/getVisitorList.do",
+			success : function(data){
+				console.log(data);
+				const table = $("<fieldset><legend>안녕하세요.</legend><table>");
+				const titleTr = $("<tr>");
+				titleTr.html("<th>방문자</th><th></th><th>방문일</th>");
+				table.append(titleTr);
+				for(let i=0;i<data.length;i++){
+					const tr = $("<tr>");
+					tr.append("<td>"+data[i].visitorIp+"</td>");
+					tr.append("<td>"+"ㅡㅡㅡ"+"</td>");
+					tr.append("<td>"+data[i].visitDate+"</td> ");
+					table.append(tr);
+				}
+				const tableEnd = $("</table></fieldset>");
+				$("#visitorList").html(table);
+			}
+		});
+	}
 	
 </script>
 </html>

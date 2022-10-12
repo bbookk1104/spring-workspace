@@ -17,6 +17,9 @@
 		<!-- 비밀번호가 null이면 아이디로만 조회, 값이 있으면 아이디&비밀번호로 조회 -->
 		and member_pw=#{memberPw}
 		</if>
+		<if test="email != null">
+		and email = #{email}
+		</if>
 	</select>
 	
 	<!-- Dao에서 list로 리턴할거라는 정보가 이미 있음. resultType에서는 list안에 들어갈 객체 타입을 적는 것 -->
@@ -37,7 +40,6 @@
 	
 	<update id="updateMember" parameterType="m">
 		update member_tbl set 
-			member_pw=#{memberPw},
 			phone=#{phone},
 			email=#{email} 
 		where member_id=#{memberId}
@@ -138,6 +140,19 @@
 			phone,
 			email
 		from member_tbl
-		where member_no <![CDATA[<]]> 5
+		where member_no <![CDATA[<]]> 10
 	</select>
+	
+	<update id="updatePw" parameterType="m">
+		update member_tbl set member_pw=#{memberPw}
+		where member_no=#{memberNo}
+	</update>
+	
+	<!-- 
+	<select id="searchPw" parameterType="m" resultType="m">
+		select member_id as memberId, email
+		from member_tbl
+		where member_id=#{memberId} and email=#{email}
+	</select>
+	 -->
 </mapper>

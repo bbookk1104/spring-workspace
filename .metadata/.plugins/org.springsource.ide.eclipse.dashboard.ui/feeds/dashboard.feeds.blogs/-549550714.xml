@@ -5,7 +5,26 @@
   <link rel="self" href="https://spring.io/blog.atom" />
   <id>http://spring.io/blog.atom</id>
   <icon>https://spring.io/favicon.ico</icon>
-  <updated>2022-10-11T07:32:00Z</updated>
+  <updated>2022-10-11T17:00:00Z</updated>
+  <entry>
+    <title>The State of Spring Survey 2022 Is Here!</title>
+    <link rel="alternate" href="https://spring.io/blog/2022/10/11/the-state-of-spring-survey-2022-is-here" />
+    <category term="news" label="News and Events" />
+    <author>
+      <name>Michael Minella</name>
+    </author>
+    <id>tag:spring.io,2022-10-11:4941</id>
+    <updated>2022-10-11T17:00:00Z</updated>
+    <content type="html">&lt;p&gt;The State of Spring survey is here! Please give us your feedback by going to &lt;a href="https://spring.io/survey"&gt;spring.io/survey&lt;/a&gt;. Spread the word by sharing these posts on &lt;a href="https://twitter.com/springcentral/status/1577314901525204992"&gt;Twitter&lt;/a&gt;, &lt;a href="https://www.linkedin.com/posts/vmware-tanzu_we-want-to-hear-from-you-share-your-feedback-activity-6983123705023406080-pwRM/"&gt;LinkedIn&lt;/a&gt;, and any other social platform you use! &lt;/p&gt;
+&lt;hr/&gt;
+&lt;p&gt;Spring fans, our annual survey of the Spring community is back! Last year, we dived into the biggest projects and the most popular app patterns built with Spring, and a whole lot more! You told us your views about Spring Native, Data, and what matters to you when you start using a new Spring project.&lt;/p&gt;
+&lt;p&gt;The survey is back for 2022, and we¡¯re really excited to learn again from you. What matters to you when you build with Spring? What types of apps are you building with Spring? What can we change, and what should remain the same?&lt;/p&gt;
+&lt;p&gt;Completing the survey should take about 15 minutes. If you want to be among the first to get the report, feel free to leave your email at the end of the survey.&lt;/p&gt;
+&lt;p&gt;Ok, if you¡¯re ready, &lt;strong&gt;head over to &lt;a href="https://spring.io/survey"&gt;spring.io/survey&lt;/a&gt; now!&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;One last thing - we&amp;rsquo;d really appreciate it if you share the survey with others in the Spring community. You can share the link spring.io/survey, or our &lt;a href="https://twitter.com/springcentral/status/1577314901525204992"&gt;Twitter&lt;/a&gt; and &lt;a href="https://www.linkedin.com/posts/vmware-tanzu_we-want-to-hear-from-you-share-your-feedback-activity-6983123705023406080-pwRM/"&gt;LinkedIn&lt;/a&gt; posts. Thank you!&lt;/p&gt;
+&lt;p&gt;The Spring Team&lt;/p&gt;
+&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
+  </entry>
   <entry>
     <title>Embracing Virtual Threads</title>
     <link rel="alternate" href="https://spring.io/blog/2022/10/11/embracing-virtual-threads" />
@@ -1156,40 +1175,6 @@ Artem&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="paragraph"&gt;
 &lt;p&gt;&lt;a href="http://projects.spring.io/spring-integration/"&gt;Project Page&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-integration/issues"&gt;GitHub Issues&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-integration/blob/master/CONTRIBUTING.adoc"&gt;Contributing&lt;/a&gt; | &lt;a href="http://stackoverflow.com/questions/tagged/spring-integration"&gt;Help&lt;/a&gt; | &lt;a href="https://gitter.im/spring-projects/spring-integration"&gt;Chat&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
-  </entry>
-  <entry>
-    <title>Spring Authorization Server 1.0.0-M2 available now</title>
-    <link rel="alternate" href="https://spring.io/blog/2022/09/21/spring-authorization-server-1-0-0-m2-available-now" />
-    <category term="releases" label="Releases" />
-    <author>
-      <name>Joe Grandja</name>
-    </author>
-    <id>tag:spring.io,2022-09-20:4920</id>
-    <updated>2022-09-21T14:00:00Z</updated>
-    <content type="html">&lt;div class="paragraph"&gt;
-&lt;p&gt;On behalf of the team and everyone who has contributed, it is my pleasure to announce the general availability of Spring Authorization Server 1.0.0-M2.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;You can download it from &lt;a href="https://repo.spring.io/milestone"&gt;repo.spring.io&lt;/a&gt; milestone repository by using the module coordinates:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;
-&lt;pre class="prettyprint highlight"&gt;&lt;code&gt;implementation 'org.springframework.security:spring-security-oauth2-authorization-server:1.0.0-M2'&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;See the &lt;a href="https://github.com/spring-projects/spring-authorization-server/releases/tag/1.0.0-M2"&gt;release notes&lt;/a&gt; for complete details.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;To get started using Spring Authorization Server, see the &lt;a href="https://docs.spring.io/spring-authorization-server/docs/current/reference/html/getting-started.html"&gt;Getting Started&lt;/a&gt; chapter of the reference documentation and the &lt;a href="https://github.com/spring-projects/spring-authorization-server/tree/main/samples"&gt;samples&lt;/a&gt; to become familiar with setup and configuration.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;We would love to gather your feedback as we strive to improve and build upon this release.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;&lt;a href="https://spring.io/projects/spring-authorization-server"&gt;Project Page&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-authorization-server/issues"&gt;GitHub Issues&lt;/a&gt; | &lt;a href="https://app.zenhub.com/workspaces/authorization-server-5e8f3182b5e8f5841bfc4902/board?repos=248032165"&gt;ZenHub Board&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;!-- rendered by Sagan Renderer Service --&gt;</content>
   </entry>

@@ -39,5 +39,6 @@
 			</td>
 		</tr>
 	</table>
+	<h3><a href="/boardList.do">게시판</a></h3>
 </body>
 </html>
