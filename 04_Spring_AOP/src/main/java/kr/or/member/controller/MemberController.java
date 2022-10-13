@@ -192,9 +192,9 @@ public class MemberController {
 		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
 		ip = request.getRemoteAddr();
 		//String checkIp = service.checkVisitorIp(ip);
-		//if(ip!="192.168.10.38") {
+		if(!ip.equals("192.168.10.38")) {
 			int result = service.insertVisitor(ip);
-		//}
+		}
 		System.out.println("접속IP : " + ip);
 		return ip;
 	}

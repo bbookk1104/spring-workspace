@@ -12,7 +12,7 @@
 		insert into visitor values
 		(
 			visitor_seq.nextval, #{ip},
-			to_char(sysdate,'yyyy-mm-dd hh24:mi:ss')
+			to_char(sysdate,'yyyy-mm-dd hh24:mi')
 		)
 	</insert>
 </mapper>

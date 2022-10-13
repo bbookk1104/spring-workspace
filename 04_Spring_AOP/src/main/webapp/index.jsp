@@ -84,10 +84,10 @@
 			success : function(data){
 				const table = $("<fieldset><legend>회원목록</legend><table>");
 				const titleTr = $("<tr>");
-				titleTr.html("<th>번호</th><th>아이디</th><th>이름</th><th>전화번호</th></tr>");
+				titleTr.html("<th style='width:10%;'>번호</th><th style='width:25%;'>아이디</th><th style='width:25%;'>이름</th><th style='width:40%;'>전화번호</th></tr>");
 				table.append(titleTr);
 				for(let i=0;i<data.length;i++){
-					const tr = $("<tr>");
+					const tr = $("<tr style='text-align:center;'>");
 					tr.append("<td>"+data[i].memberNo+"</td>");
 					tr.append("<td>"+data[i].memberId+"</td> ");
 					tr.append("<td>"+data[i].memberName+"</td> ");
