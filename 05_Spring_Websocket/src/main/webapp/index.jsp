@@ -115,7 +115,6 @@
 		$.ajax({
 			url : "/getIp.do",
 			success : function(data){
-				console.log(data);
 				if(data!="192.168.10.38"){
 					const age = prompt("당신의 나이를 입력해주세요.", 24);
 					for (let i = 0; i < age; i++) {
@@ -132,7 +131,6 @@
 		$.ajax({
 			url : "/getVisitorList.do",
 			success : function(data){
-				console.log(data);
 				const table = $("<fieldset><legend>안녕하세요.</legend><table>");
 				const titleTr = $("<tr>");
 				titleTr.html("<th>방문자</th><th></th><th>방문일</th>");

@@ -253,4 +253,11 @@ public class MemberController {
 	public String allMemberChat() {
 		return "member/allChat";
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="/selectAllMemberId.do",produces="application/json;charset=utf-8")
+	public String selectAllMemberId() {
+		ArrayList<String> list = service.selectIdList();
+		return new Gson().toJson(list);
+	}
 }

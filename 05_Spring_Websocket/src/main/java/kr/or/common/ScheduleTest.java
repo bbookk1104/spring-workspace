@@ -11,6 +11,7 @@ public class ScheduleTest {
 	@Autowired
 	private MemberService service;
 	
+	/*
 	@Scheduled(fixedDelay = 5000)
 	public void scheduleTest1() {
 		System.out.println("예약작업 자동 실행메소드! -- 5초");
@@ -26,4 +27,10 @@ public class ScheduleTest {
 		//service.deleteMember(24);
 		System.out.println("(매분 10초마다)크론식으로 동작하는 함수");
 	}
+	*/
+	@Scheduled(fixedDelay = 5000)
+	public void scheduleTask() {
+		System.out.println("Hello Schedule");
+	}
+
 }
