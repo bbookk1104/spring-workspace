@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="Chat"/>
+		<item key="selection" value="selectAllMemberId"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="selectAllMemberId"/>
+			<item value="idl"/>
 			<item value="chat"/>
 			<item value="memberId"/>
 			<item value="checkPwFrm"/>
 			<item value="cache-ref"/>
 			<item value="System.out.println"/>
 			<item value="&#x09;$(function() {&#x09;&#x09;$.getJSON(&quot;https://api.ipify.org?format=jsonp&amp;callback=?&quot;,&#x09;&#x09;&#x09;function(json) {&#x09;&#x09;&#x09;&#x09;document.write(json.ip);&#x09;&#x09;&#x09;}&#x09;&#x09;);&#x09;});"/>
-			<item value="testLog()"/>
-			<item value="bvd"/>
 		</list>
 		<list key="replacehistory">
 			<item value="pwCheckFrm"/>
